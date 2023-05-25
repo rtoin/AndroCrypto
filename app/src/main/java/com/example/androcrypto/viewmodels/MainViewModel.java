@@ -24,4 +24,9 @@ public class MainViewModel extends ViewModel implements IViewModel {
         SampleModel newData = new SampleModel(generatedString);
         data.postValue(newData);
     }
+
+    @Override
+    public void generateCoinList() {
+
+    }
 }

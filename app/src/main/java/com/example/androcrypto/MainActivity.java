@@ -8,6 +8,7 @@ import android.os.Bundle;
 import com.example.androcrypto.databinding.ActivityMainBinding;
 import com.example.androcrypto.viewmodels.IViewModel;
 import com.example.androcrypto.viewmodels.MainViewModel;
+import com.example.androcrypto.viewmodels.RetrofitViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,10 +21,10 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        viewModel = new ViewModelProvider(this).get(RetrofitViewModel.class);
 
         binding.nextValueButton.setOnClickListener(v -> {
-            viewModel.generateNextValue();
+            viewModel.generateCoinList();
         });
     }
 

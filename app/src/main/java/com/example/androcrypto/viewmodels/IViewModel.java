@@ -7,4 +7,6 @@ import com.example.androcrypto.models.SampleModel;
 public interface IViewModel {
     LiveData<SampleModel> getData();
     void generateNextValue();
+
+    void generateCoinList();
 }
