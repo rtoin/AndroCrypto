@@ -1,6 +1,6 @@
-package com.example.mvvmexample.network;
+package com.example.androcrypto.network;
 
-import com.example.mvvmexample.models.PriceResponse;
+import com.example.androcrypto.models.PriceResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -11,7 +11,7 @@ public interface CoinRankingAPI {
 
     @Headers({
             "x-rapidapi-host: coinranking1.p.rapidapi.com",
-            "x-rapidapi-key: efeaa5d79fmshe6fa6c8e321ac1dp1b25afjsnf399ab057be2"
+            "x-rapidapi-key: 843d18442emsh7a9f5376a584e16p15746djsn1daba9193156"
     })
     @GET("/coin/Qwsogvtv82FCd/price")
     Call<PriceResponse> getBitcoinPrice();

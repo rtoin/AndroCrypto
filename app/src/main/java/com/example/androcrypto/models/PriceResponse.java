@@ -1,4 +1,4 @@
-package com.example.mvvmexample.models;
+package com.example.androcrypto.models;
 
 public class PriceResponse {
 

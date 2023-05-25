@@ -1,6 +1,6 @@
-package com.example.mvvmexample.network;
+package com.example.androcrypto.network;
 
-import com.example.mvvmexample.NetworkConstants;
+import com.example.androcrypto.NetworkConstants;
 
 import okhttp3.Call;
 import okhttp3.OkHttpClient;

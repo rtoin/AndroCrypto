@@ -1,15 +1,13 @@
-package com.example.mvvmexample;
+package com.example.androcrypto;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 
-import com.example.mvvmexample.databinding.ActivityMainBinding;
-import com.example.mvvmexample.viewmodels.IViewModel;
-import com.example.mvvmexample.viewmodels.MainViewModel;
-import com.example.mvvmexample.viewmodels.OkHttpViewModel;
-import com.example.mvvmexample.viewmodels.RetrofitViewModel;
+import com.example.androcrypto.databinding.ActivityMainBinding;
+import com.example.androcrypto.viewmodels.IViewModel;
+import com.example.androcrypto.viewmodels.MainViewModel;
 
 public class MainActivity extends AppCompatActivity {
 

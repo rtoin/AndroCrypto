@@ -1,4 +1,4 @@
-package com.example.mvvmexample;
+package com.example.androcrypto;
 
 public class NetworkConstants {
 

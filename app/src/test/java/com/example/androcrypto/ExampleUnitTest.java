@@ -1,4 +1,4 @@
-package com.example.mvvmexample;
+package com.example.androcrypto;
 
 import org.junit.Test;
 

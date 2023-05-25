@@ -1,12 +1,12 @@
-package com.example.mvvmexample.viewmodels;
+package com.example.androcrypto.viewmodels;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.mvvmexample.models.PriceResponse;
-import com.example.mvvmexample.models.SampleModel;
-import com.example.mvvmexample.network.RetrofitNetworkManager;
+import com.example.androcrypto.models.PriceResponse;
+import com.example.androcrypto.models.SampleModel;
+import com.example.androcrypto.network.RetrofitNetworkManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;

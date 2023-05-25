@@ -1,13 +1,13 @@
-package com.example.mvvmexample.viewmodels;
+package com.example.androcrypto.viewmodels;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.mvvmexample.models.PriceResponse;
-import com.example.mvvmexample.models.SampleModel;
-import com.example.mvvmexample.network.OkHttpNetworkManager;
+import com.example.androcrypto.models.PriceResponse;
+import com.example.androcrypto.models.SampleModel;
+import com.example.androcrypto.network.OkHttpNetworkManager;
 import com.google.gson.Gson;
 
 import java.io.IOException;
