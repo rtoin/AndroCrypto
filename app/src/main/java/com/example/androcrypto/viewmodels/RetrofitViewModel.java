@@ -5,10 +5,12 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.androcrypto.models.CoinsResponse;
-import com.example.androcrypto.models.ListModel;
+import com.example.androcrypto.models.Coin;
 import com.example.androcrypto.models.PriceResponse;
 import com.example.androcrypto.models.SampleModel;
 import com.example.androcrypto.network.RetrofitNetworkManager;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -19,10 +21,14 @@ public class RetrofitViewModel extends ViewModel implements IViewModel {
 
     private final MutableLiveData<SampleModel> data = new MutableLiveData<>();
 
-    private final MutableLiveData<ListModel> dataList = new MutableLiveData<>();
+    private final MutableLiveData<List<Coin>> dataList = new MutableLiveData<>();
 
+    @Override
     public LiveData<SampleModel> getData() {
-        return data;
+        return null;
+    }
+    public LiveData<List<Coin>> getDataCoins() {
+        return dataList;
     }
 
     @Override
@@ -57,12 +63,12 @@ public class RetrofitViewModel extends ViewModel implements IViewModel {
 
             @Override
             public void onFailure(Call<CoinsResponse> call, Throwable t) {
-                // NO-OP
+                t.printStackTrace();
             }
         });
     }
 
     private void handleCoinListResponse(CoinsResponse response) {
-        dataList.postValue(new ListModel(response.getData().getCoins()));
+        dataList.postValue(response.getData().getCoins());
     }
 }

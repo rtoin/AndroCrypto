@@ -1,6 +1,6 @@
 package com.example.androcrypto.models;
 
-public class CoinsResponseCoin {
+public class Coin {
 
     private String name;
 

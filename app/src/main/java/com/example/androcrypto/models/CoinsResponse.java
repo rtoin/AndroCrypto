@@ -4,7 +4,7 @@ public class CoinsResponse {
 
     private String status;
 
-    private CoinsResponseData data;
+    private CoinsData data;
 
     public String getStatus() {
         return status;
@@ -14,11 +14,11 @@ public class CoinsResponse {
         this.status = status;
     }
 
-    public CoinsResponseData getData() {
+    public CoinsData getData() {
         return data;
     }
 
-    public void setData(CoinsResponseData data) {
+    public void setData(CoinsData data) {
         this.data = data;
     }
 }
