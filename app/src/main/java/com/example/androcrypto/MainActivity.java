@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.os.Bundle;
 
 import com.example.androcrypto.databinding.ActivityMainBinding;
+import com.example.androcrypto.models.Coin;
 import com.example.androcrypto.viewmodels.IViewModel;
 import com.example.androcrypto.viewmodels.MainViewModel;
 import com.example.androcrypto.viewmodels.RetrofitViewModel;
@@ -34,6 +35,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         adapter = new RecyclerViewAdapter(new ArrayList<>());
+        adapter.setListener(new Listener() {
+            @Override
+            public void onClick(Coin coin) {
+                System.out.println("Ceci est une cryptomonnaie : "+ coin.getName());
+            }
+        });
         binding.coinList.setLayoutManager(new LinearLayoutManager(this));
         binding.coinList.setAdapter(adapter);
     }

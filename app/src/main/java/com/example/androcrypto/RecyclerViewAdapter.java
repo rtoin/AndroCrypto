@@ -1,6 +1,7 @@
 package com.example.androcrypto;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -14,9 +15,18 @@ import java.util.List;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
     private List<Coin> data;
+    private Listener listener;
 
     public RecyclerViewAdapter(List<Coin> coins) {
         this.data = coins;
+    }
+
+    public Listener getListener() {
+        return listener;
+    }
+
+    public void setListener(Listener listener) {
+        this.listener = listener;
     }
 
     @NonNull
@@ -30,6 +40,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.binding.nameView.setText(data.get(position).getName());
         holder.binding.priceView.setText(data.get(position).getPrice());
+
+
+        holder.binding.getRoot().setOnClickListener(v -> {
+            listener.onClick(data.get(position));
+        });
+        holder.binding.nameView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onClick(data.get(holder.getAdapterPosition()));
+            }
+        });
     }
 
     @Override
