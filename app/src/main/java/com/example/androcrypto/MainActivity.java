@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import com.example.androcrypto.databinding.ActivityMainBinding;
 import com.example.androcrypto.models.Coin;
+import com.example.androcrypto.storage.SaveCoin;
 import com.example.androcrypto.viewmodels.IViewModel;
 import com.example.androcrypto.viewmodels.MainViewModel;
 import com.example.androcrypto.viewmodels.RetrofitViewModel;
@@ -38,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
         adapter.setListener(new Listener() {
             @Override
             public void onClick(Coin coin) {
-                System.out.println("Ceci est une cryptomonnaie : "+ coin.getName());
+                SaveCoin.getInstance().setApiKey(coin.getName());
+                System.out.println(SaveCoin.getInstance().getApiKey());
             }
         });
         binding.coinList.setLayoutManager(new LinearLayoutManager(this));
