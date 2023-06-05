@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.androcrypto.databinding.ActivityMainBinding;
 import com.example.androcrypto.models.Coin;
@@ -45,6 +47,15 @@ public class MainActivity extends AppCompatActivity {
         });
         binding.coinList.setLayoutManager(new LinearLayoutManager(this));
         binding.coinList.setAdapter(adapter);
+
+        Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
+
+        binding.buttonTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -55,9 +66,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        viewModel.getData().removeObservers(this);
-    }
+   // @Override
+   // protected void onPause() {
+     //   super.onPause();
+       // viewModel.getData().removeObservers(this);
+   // }
 }
