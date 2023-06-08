@@ -31,6 +31,7 @@ public class RetrofitViewModel extends ViewModel implements IViewModel {
         return dataList;
     }
 
+    // TODO: à supprimer
     @Override
     public void generateNextValue() {
         RetrofitNetworkManager.coinRankingAPI.getBitcoinPrice().enqueue(new Callback<PriceResponse>() {
@@ -56,7 +57,7 @@ public class RetrofitViewModel extends ViewModel implements IViewModel {
         RetrofitNetworkManager.coinRankingAPI.getCoinList().enqueue(new Callback<CoinsResponse>() {
             @Override
             public void onResponse(Call<CoinsResponse> call, Response<CoinsResponse> response) {
-                if (response.body() != null) {
+                if (response.body() != null) { // TODO: si body null ?
                     handleCoinListResponse(response.body());
                 }
             }
@@ -64,6 +65,7 @@ public class RetrofitViewModel extends ViewModel implements IViewModel {
             @Override
             public void onFailure(Call<CoinsResponse> call, Throwable t) {
                 t.printStackTrace();
+                // TODO: gestion des erreurs
             }
         });
     }

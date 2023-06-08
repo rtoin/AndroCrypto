@@ -1,7 +1,7 @@
 package com.example.androcrypto.network;
 
 import androidx.annotation.NonNull;
-
+// TODO: inutile
 import com.example.androcrypto.storage.SaveCoin;
 
 import java.io.IOException;
@@ -20,6 +20,7 @@ public class AuthInterceptor implements Interceptor {
     @NonNull
     @Override
     public Response intercept(@NonNull Chain chain) throws IOException {
+        // TODO: pas besoin, pourquoi ne pas utiliser directement la constante ?
         String apiKey = KEY_HEADER_VALUE;
 
         Request request = new Request.Builder(chain.request())

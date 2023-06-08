@@ -12,6 +12,7 @@ import com.example.androcrypto.databinding.ActivityMainBinding;
 import com.example.androcrypto.models.Coin;
 import com.example.androcrypto.storage.SaveCoin;
 import com.example.androcrypto.viewmodels.IViewModel;
+// TODO: inutile
 import com.example.androcrypto.viewmodels.MainViewModel;
 import com.example.androcrypto.viewmodels.RetrofitViewModel;
 
@@ -41,13 +42,14 @@ public class MainActivity extends AppCompatActivity {
         adapter.setListener(new Listener() {
             @Override
             public void onClick(Coin coin) {
+                // TODO: on essaie de ne pas utiliser les preferences dans la view qui n'a pas à connaître comment est stockée la donnée
                 SaveCoin.getInstance().setApiKey(coin.getName());
                 System.out.println(SaveCoin.getInstance().getApiKey());
             }
         });
         binding.coinList.setLayoutManager(new LinearLayoutManager(this));
         binding.coinList.setAdapter(adapter);
-
+// TODO: mieux d'attendre le clic pour créer l'intent. On essaie de ne créer les objets que lorsque on est sûr d'en avoir besoin
         Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
 
         binding.buttonTest.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             adapter.setData(coins);
         });
     }
-
+// TODO: pas de code commenté
    // @Override
    // protected void onPause() {
      //   super.onPause();

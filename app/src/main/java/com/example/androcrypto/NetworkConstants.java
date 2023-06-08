@@ -1,7 +1,7 @@
 package com.example.androcrypto;
 
 public class NetworkConstants {
-
+    // TODO: constantes inutilisées
     public static final String BASE_URL = "https://coinranking1.p.rapidapi.com";
     public static final String BITCOIN_PRICE_PATH = "/coin/Qwsogvtv82FCd/price";
 

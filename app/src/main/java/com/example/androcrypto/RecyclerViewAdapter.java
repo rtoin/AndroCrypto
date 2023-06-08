@@ -43,11 +43,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
         holder.binding.getRoot().setOnClickListener(v -> {
+            // TODO: attention si listener == null
             listener.onClick(data.get(position));
         });
         holder.binding.nameView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // TODO: pourquoi ne pas utiliser position comme au dessus ?
                 listener.onClick(data.get(holder.getAdapterPosition()));
             }
         });
@@ -55,6 +57,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public int getItemCount() {
+        // TODO: attention si data == null
         return data.size();
     }
 

@@ -10,6 +10,7 @@ import retrofit2.http.Headers;
 // https://square.github.io/retrofit/
 public interface CoinRankingAPI {
 
+    // TODO: cet endpoint ne doit plus être utilisé
     @Headers({
             "x-rapidapi-host: coinranking1.p.rapidapi.com",
             "x-rapidapi-key: 843d18442emsh7a9f5376a584e16p15746djsn1daba9193156"
@@ -17,6 +18,7 @@ public interface CoinRankingAPI {
     @GET("/coin/Qwsogvtv82FCd/price")
     Call<PriceResponse> getBitcoinPrice();
 
+    // TODO: pas de code commenté
     //@Headers({
     //     "x-rapidapi-host: coinranking1.p.rapidapi.com",
     //       "x-rapidapi-key: 843d18442emsh7a9f5376a584e16p15746djsn1daba9193156"

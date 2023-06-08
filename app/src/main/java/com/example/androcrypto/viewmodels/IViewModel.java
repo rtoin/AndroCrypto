@@ -8,6 +8,7 @@ import com.example.androcrypto.models.SampleModel;
 import java.util.List;
 
 public interface IViewModel {
+    // TODO: méthode plus utilisée
     LiveData<SampleModel> getData();
     void generateNextValue();
 

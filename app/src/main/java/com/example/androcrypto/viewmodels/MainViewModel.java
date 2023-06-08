@@ -10,7 +10,7 @@ import com.example.androcrypto.models.SampleModel;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Random;
-
+// TODO: à supprimer
 public class MainViewModel extends ViewModel implements IViewModel {
 
     private final MutableLiveData<SampleModel> data = new MutableLiveData<>();

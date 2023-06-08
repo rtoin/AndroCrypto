@@ -1,5 +1,5 @@
 package com.example.androcrypto.models;
-
+// TODO: inutile
 public class SampleModel {
 
     private final String data;
