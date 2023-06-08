@@ -15,8 +15,6 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DetailsActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-
     }
 
 }

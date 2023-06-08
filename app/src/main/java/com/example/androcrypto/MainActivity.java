@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private IViewModel viewModel;
 
     private RecyclerViewAdapter adapter;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +46,12 @@ public class MainActivity extends AppCompatActivity {
                 SaveCoin.getInstance().setApiKey(coin.getName());
                 System.out.println(SaveCoin.getInstance().getApiKey());
                 viewModel.generateCoin(coin.getUuid());
+                intent = new Intent(MainActivity.this, DetailsActivity.class);
+                startActivity(intent);
             }
         });
         binding.coinList.setLayoutManager(new LinearLayoutManager(this));
         binding.coinList.setAdapter(adapter);
-// TODO: mieux d'attendre le clic pour créer l'intent. On essaie de ne créer les objets que lorsque on est sûr d'en avoir besoin
-        Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
 
         binding.buttonTest.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,10 +72,4 @@ public class MainActivity extends AppCompatActivity {
 
         });
     }
-// TODO: pas de code commenté
-   // @Override
-   // protected void onPause() {
-     //   super.onPause();
-       // viewModel.getData().removeObservers(this);
-   // }
 }
