@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(RetrofitViewModel.class);
 
         binding.nextValueButton.setOnClickListener(v -> {
-            viewModel.generateNextValue();
             viewModel.generateCoinList();
         });
 
@@ -53,12 +52,6 @@ public class MainActivity extends AppCompatActivity {
         binding.coinList.setLayoutManager(new LinearLayoutManager(this));
         binding.coinList.setAdapter(adapter);
 
-        binding.buttonTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(intent);
-            }
-        });
     }
 
     @Override

@@ -1,6 +1,15 @@
 package com.example.androcrypto.models;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "coin_table")
 public class Coin {
+
+    @PrimaryKey
+    @NonNull
+    private String uuid;
 
     private String name;
 
@@ -10,7 +19,9 @@ public class Coin {
 
     private String description;
 
-    private String uuid;
+    public String getUuid() { return uuid; }
+
+    public void setUuid(String uuid) { this.uuid = uuid; }
 
     public String getName() {
         return name;
@@ -39,8 +50,4 @@ public class Coin {
     public String getDescription() { return description; }
 
     public void setDescription(String description) { this.description = description; }
-
-    public String getUuid() { return uuid; }
-
-    public void setUuid(String uuid) { this.uuid = uuid; }
 }

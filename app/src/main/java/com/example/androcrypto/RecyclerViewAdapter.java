@@ -57,8 +57,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public int getItemCount() {
-        // TODO: attention si data == null
-        return data.size();
+        if(data != null) {
+            return data.size();
+        } else {
+            return 0;
+        }
     }
 
     public void setData(List<Coin> coins) {
