@@ -2,7 +2,7 @@ package com.example.androcrypto;
 
 import android.app.Application;
 import android.content.Context;
-
+// TODO: nom un peu moins générique
 public class MyApplication extends Application {
 
     private static Context APPLICATION_CONTEXT;
