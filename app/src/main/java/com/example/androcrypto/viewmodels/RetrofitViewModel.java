@@ -6,13 +6,10 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.androcrypto.models.CoinResponse;
 import com.example.androcrypto.models.CoinsResponse;
 import com.example.androcrypto.models.Coin;
-import com.example.androcrypto.models.PriceResponse;
-import com.example.androcrypto.models.SampleModel;
 import com.example.androcrypto.network.RetrofitNetworkManager;
 import com.example.androcrypto.storage.DataRepository;
 
@@ -47,7 +44,7 @@ public class RetrofitViewModel extends AndroidViewModel implements IViewModel {
         RetrofitNetworkManager.coinRankingAPI.getCoinList().enqueue(new Callback<CoinsResponse>() {
             @Override
             public void onResponse(Call<CoinsResponse> call, Response<CoinsResponse> response) {
-                if (response.body() != null) { // TODO: si body null ?
+                if (response.body() != null) {
                     handleCoinListResponse(response.body());
                 } else {
                     handleCoinListError();

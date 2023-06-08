@@ -6,11 +6,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import com.example.androcrypto.databinding.ActivityMainBinding;
 import com.example.androcrypto.models.Coin;
-import com.example.androcrypto.storage.SaveCoin;
+import com.example.androcrypto.storage.Preferences;
 import com.example.androcrypto.viewmodels.IViewModel;
 
 import com.example.androcrypto.viewmodels.RetrofitViewModel;
@@ -41,9 +40,6 @@ public class MainActivity extends AppCompatActivity {
         adapter.setListener(new Listener() {
             @Override
             public void onClick(Coin coin) {
-                // TODO: on essaie de ne pas utiliser les preferences dans la view qui n'a pas à connaître comment est stockée la donnée
-                SaveCoin.getInstance().setApiKey(coin.getName());
-                System.out.println(SaveCoin.getInstance().getApiKey());
                 viewModel.generateCoin(coin.getUuid());
                 intent = new Intent(MainActivity.this, DetailsActivity.class);
                 startActivity(intent);
