@@ -13,4 +13,7 @@ public interface IViewModel {
 
     LiveData<List<Coin>> getDataCoins();
     void generateCoinList();
+
+    LiveData<Coin> getDataCoin();
+    void generateCoin(String uuid);
 }

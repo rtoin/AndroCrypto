@@ -10,7 +10,6 @@ import com.example.androcrypto.databinding.ActivityMainBinding;
 import com.example.androcrypto.models.Coin;
 import com.example.androcrypto.storage.SaveCoin;
 import com.example.androcrypto.viewmodels.IViewModel;
-import com.example.androcrypto.viewmodels.MainViewModel;
 import com.example.androcrypto.viewmodels.RetrofitViewModel;
 
 import java.util.ArrayList;
@@ -41,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(Coin coin) {
                 SaveCoin.getInstance().setApiKey(coin.getName());
                 System.out.println(SaveCoin.getInstance().getApiKey());
+                viewModel.generateCoin(coin.getUuid());
+                System.out.println("Desc: "+
             }
         });
         binding.coinList.setLayoutManager(new LinearLayoutManager(this));
@@ -52,6 +53,10 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         viewModel.getDataCoins().observe(this, coins -> {
             adapter.setData(coins);
+        });
+
+        viewModel.getDataCoin().observe(this, coin -> {
+
         });
     }
 

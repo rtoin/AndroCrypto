@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.androcrypto.models.CoinResponse;
 import com.example.androcrypto.models.CoinsResponse;
 import com.example.androcrypto.models.Coin;
 import com.example.androcrypto.models.PriceResponse;
@@ -22,6 +23,7 @@ public class RetrofitViewModel extends ViewModel implements IViewModel {
     private final MutableLiveData<SampleModel> data = new MutableLiveData<>();
 
     private final MutableLiveData<List<Coin>> dataList = new MutableLiveData<>();
+    private final MutableLiveData<Coin> dataCoin = new MutableLiveData<>();
 
     @Override
     public LiveData<SampleModel> getData() {
@@ -29,6 +31,10 @@ public class RetrofitViewModel extends ViewModel implements IViewModel {
     }
     public LiveData<List<Coin>> getDataCoins() {
         return dataList;
+    }
+
+    public LiveData<Coin> getDataCoin() {
+        return dataCoin;
     }
 
     @Override
@@ -70,5 +76,25 @@ public class RetrofitViewModel extends ViewModel implements IViewModel {
 
     private void handleCoinListResponse(CoinsResponse response) {
         dataList.postValue(response.getData().getCoins());
+    }
+
+    public void generateCoin(String uuid) {
+        RetrofitNetworkManager.coinRankingAPI.getCoin(uuid).enqueue(new Callback<CoinResponse>() {
+            @Override
+            public void onResponse(Call<CoinResponse> call, Response<CoinResponse> response) {
+                if (response.body() != null) {
+                    handleCoinResponse(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CoinResponse> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+    }
+
+    private void handleCoinResponse(CoinResponse response) {
+        dataCoin.postValue(response.getData());
     }
 }
