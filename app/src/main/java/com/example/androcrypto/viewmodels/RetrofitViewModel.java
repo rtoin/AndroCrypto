@@ -25,7 +25,6 @@ import retrofit2.Response;
 
 public class RetrofitViewModel extends AndroidViewModel implements IViewModel {
 
-    private final MutableLiveData<List<Coin>> dataList = new MutableLiveData<>();
     private final MutableLiveData<Coin> dataCoin = new MutableLiveData<>();
 
     private final DataRepository dataRepository;
@@ -37,12 +36,9 @@ public class RetrofitViewModel extends AndroidViewModel implements IViewModel {
         data = dataRepository.getData();
     }
 
-    public LiveData<List<Coin>> getData() {
-        return data;
-    }
-
+    @Override
     public LiveData<List<Coin>> getDataCoins() {
-        return dataList;
+        return data;
     }
 
     public LiveData<Coin> getDataCoin() { return dataCoin; }
@@ -69,15 +65,13 @@ public class RetrofitViewModel extends AndroidViewModel implements IViewModel {
     }
 
     private void handleCoinListResponse(CoinsResponse response) {
-        dataList.postValue(response.getData().getCoins());
-
         for(Coin coin : response.getData().getCoins()) {
             dataRepository.insertData(coin);
         }
     }
 
     private void handleCoinListError() {
-        dataList.postValue(data.getValue());
+
     }
 
     public void generateCoin(String uuid) {

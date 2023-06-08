@@ -5,6 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.androcrypto.models.Coin;
 
@@ -13,9 +14,9 @@ import java.util.List;
 @Dao
 public interface CustomDao {
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Coin coin);
 
-    @Query("SELECT * FROM coin_table")
+    @Query("SELECT * FROM coin_table ORDER BY CAST(price AS FLOAT) DESC")
     LiveData<List<Coin>> getAll();
 }

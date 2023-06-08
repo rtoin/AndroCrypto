@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         viewModel = new ViewModelProvider(this).get(RetrofitViewModel.class);
 
-        binding.nextValueButton.setOnClickListener(v -> {
+        binding.refreshButton.setOnClickListener(v -> {
             viewModel.generateCoinList();
         });
 
