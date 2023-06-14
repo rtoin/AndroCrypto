@@ -1,8 +1,12 @@
 package com.example.androcrypto.viewmodels;
 
+import android.app.Application;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.androcrypto.models.Coin;
 import com.example.androcrypto.models.CoinResponse;
@@ -12,9 +16,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DetailsViewModel extends ViewModel implements IDetailsViewModel {
+public class DetailsViewModel extends AndroidViewModel implements IDetailsViewModel {
 
     private final MutableLiveData<Coin> dataCoin = new MutableLiveData<>();
+
+    public DetailsViewModel(@NonNull Application application) {
+        super(application);
+    }
 
     @Override
     public LiveData<Coin> getDataCoin() {
@@ -34,13 +42,20 @@ public class DetailsViewModel extends ViewModel implements IDetailsViewModel {
 
             @Override
             public void onFailure(Call<CoinResponse> call, Throwable t) {
-                //TODO: gestion d'erreur
-                t.printStackTrace();
+                handleCoinError();
             }
         });
     }
 
     private void handleCoinResponse(CoinResponse response){
         dataCoin.postValue(response.getData().getCoin());
+    }
+
+    private void handleCoinError() {
+        CharSequence message = "You are disconnected!";
+        int duration = Toast.LENGTH_LONG;
+
+        Toast toast = Toast.makeText(this.getApplication(), message, duration);
+        toast.show();
     }
 }

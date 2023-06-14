@@ -1,7 +1,6 @@
 package com.example.androcrypto.viewmodels;
 
 import android.app.Application;
-import android.content.Context;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -9,9 +8,8 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.androcrypto.models.CoinResponse;
-import com.example.androcrypto.models.CoinListResponse;
 import com.example.androcrypto.models.Coin;
+import com.example.androcrypto.models.CoinListResponse;
 import com.example.androcrypto.network.RetrofitNetworkManager;
 import com.example.androcrypto.storage.DataRepository;
 
@@ -28,11 +26,9 @@ public class RetrofitViewModel extends AndroidViewModel implements IViewModel {
 
     private final DataRepository dataRepository;
     private final LiveData<List<Coin>> data;
-    private Context MyApplication;
 
     public RetrofitViewModel(@NonNull Application application) {
         super(application);
-        this.MyApplication = this.getApplication();
         dataRepository = new DataRepository(application);
         data = dataRepository.getData();
     }
@@ -70,10 +66,10 @@ public class RetrofitViewModel extends AndroidViewModel implements IViewModel {
     }
 
     private void handleCoinListError() {
-        CharSequence text = "You are disconnected !";
+        CharSequence message = "You are disconnected!";
         int duration = Toast.LENGTH_SHORT;
 
-        Toast toast = Toast.makeText(this.MyApplication, text, duration);
+        Toast toast = Toast.makeText(this.getApplication(), message, duration);
         toast.show();
     }
 }
