@@ -90,4 +90,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <ImageView
+        android:id="@+id/iconStar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="-5dp"
+        android:layout_marginEnd="10dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/coinName"
+        app:layout_constraintTop_toTopOf="@+id/coinName"
+        app:srcCompat="@drawable/star" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

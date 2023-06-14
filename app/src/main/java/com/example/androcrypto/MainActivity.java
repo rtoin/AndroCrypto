@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         });
         binding.coinList.setLayoutManager(new LinearLayoutManager(this));
         binding.coinList.setAdapter(adapter);
-
     }
 
     @Override

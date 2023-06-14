@@ -2,16 +2,16 @@ package com.example.androcrypto;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-// TODO: inutile
-import com.example.androcrypto.databinding.ActivityMainBinding;
+
 import com.example.androcrypto.databinding.DetailsActivityBinding;
+import com.example.androcrypto.models.Coin;
+import com.example.androcrypto.storage.Preferences;
 import com.example.androcrypto.viewmodels.DetailsViewModel;
 import com.example.androcrypto.viewmodels.IDetailsViewModel;
-import com.example.androcrypto.viewmodels.IViewModel;
-import com.example.androcrypto.viewmodels.RetrofitViewModel;
 
 public class DetailsActivity extends AppCompatActivity {
 
@@ -19,8 +19,6 @@ public class DetailsActivity extends AppCompatActivity {
     private IDetailsViewModel viewModel;
 
     private String uuid;
-    //Name field to at least display the name if no connection is available
-    private String name;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +29,9 @@ public class DetailsActivity extends AppCompatActivity {
         uuid = intent.getStringExtra("COIN_UUID");
 
         viewModel = new ViewModelProvider(this).get(DetailsViewModel.class);
-
         viewModel.generateCoin(uuid);
+
+        binding.buttonFavorite.setEnabled(false);
 
         viewModel.getDataCoin().observe(this, coin -> {
             if(coin != null) {
@@ -41,6 +40,61 @@ public class DetailsActivity extends AppCompatActivity {
                 binding.coinPrice.setText(coin.getPrice());
                 binding.coinDescription.setText(coin.getDescription());
             }
+
+            updateFavoriteDisplay(coin);
+
+            binding.buttonFavorite.setOnClickListener(v -> {
+                updateFavoriteCoin(coin);
+                updateFavoriteDisplay(coin);
+            });
         });
+    }
+
+    /**
+     * Update the text of the favorite button and the visibility of the favorite star
+     *
+     * @param coin coin compared to the value stored in shared preferences as favorite
+     */
+    private void updateFavoriteDisplay(Coin coin) {
+
+        String currentFavorite = Preferences.getInstance().getFavoriteCoin();
+
+        if(currentFavorite != null) {
+            if(coin != null) {
+                if(currentFavorite.equals(coin.getName())) {
+                    binding.buttonFavorite.setText("Remove from favorite");
+                    binding.iconStar.setVisibility(View.VISIBLE);
+                } else {
+                    binding.buttonFavorite.setText("Set as favorite");
+                    binding.iconStar.setVisibility(View.INVISIBLE);
+                }
+            }
+        } else {
+            binding.buttonFavorite.setText("Set as favorite");
+            binding.iconStar.setVisibility(View.INVISIBLE);
+        }
+
+        binding.buttonFavorite.setEnabled(true);
+    }
+
+    /**
+     * Update the coin stored as favorite in shared preferences
+     *
+     * @param coin coin to save as favorite
+     */
+    private void updateFavoriteCoin(Coin coin) {
+        String currentFavorite = Preferences.getInstance().getFavoriteCoin();
+
+        if(currentFavorite != null) {
+            if(coin != null) {
+                if(currentFavorite.equals(coin.getName())) {
+                    Preferences.getInstance().setFavoriteCoin("");
+                } else {
+                    Preferences.getInstance().setFavoriteCoin(coin.getName());
+                }
+            }
+        } else {
+            Preferences.getInstance().setFavoriteCoin(coin.getName());
+        }
     }
 }

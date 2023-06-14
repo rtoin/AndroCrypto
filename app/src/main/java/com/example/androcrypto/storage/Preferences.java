@@ -10,13 +10,12 @@ public class Preferences {
     private static Preferences INSTANCE;
 
     private static final String SHARED_PREFERENCES_NAME = "androCryptoPreferences";
-    private static final String FAVORITE_KEY = "favoriteKey";
+    private static final String FAVORITE_COIN_KEY = "favoriteCoin";
 
     private final SharedPreferences preferences;
 
     private Preferences() {
-        preferences = AndroCryptoApplication.getContext()
-                .getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
+        preferences = AndroCryptoApplication.getContext().getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
     }
 
     public static Preferences getInstance() {
@@ -26,11 +25,11 @@ public class Preferences {
         return INSTANCE;
     }
 
-    public String getFavoriteKey() {
-        return preferences.getString(FAVORITE_KEY, null);
+    public String getFavoriteCoin() {
+        return preferences.getString(FAVORITE_COIN_KEY, null);
     }
 
-    public void setFavoriteKey(String apiKey) {
-        preferences.edit().putString(FAVORITE_KEY, apiKey).apply();
+    public void setFavoriteCoin(String coinName) {
+        preferences.edit().putString(FAVORITE_COIN_KEY, coinName).apply();
     }
 }
