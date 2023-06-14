@@ -1,7 +1,7 @@
 package com.example.androcrypto.network;
 
-import com.example.androcrypto.models.CoinResponse;
 import com.example.androcrypto.models.CoinListResponse;
+import com.example.androcrypto.models.CoinResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

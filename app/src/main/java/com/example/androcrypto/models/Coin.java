@@ -19,9 +19,13 @@ public class Coin {
 
     private String description;
 
-    public String getUuid() { return uuid; }
+    public String getUuid() {
+        return uuid;
+    }
 
-    public void setUuid(String uuid) { this.uuid = uuid; }
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
     public String getName() {
         return name;
@@ -47,7 +51,11 @@ public class Coin {
         this.price = price;
     }
 
-    public String getDescription() { return description; }
+    public String getDescription() {
+        return description;
+    }
 
-    public void setDescription(String description) { this.description = description; }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

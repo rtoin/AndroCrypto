@@ -35,7 +35,7 @@ public class DetailsViewModel extends AndroidViewModel implements IDetailsViewMo
 
             @Override
             public void onResponse(Call<CoinResponse> call, Response<CoinResponse> response) {
-                if(response.body() != null){
+                if (response.body() != null) {
                     handleCoinResponse(response.body());
                 }
             }
@@ -47,7 +47,7 @@ public class DetailsViewModel extends AndroidViewModel implements IDetailsViewMo
         });
     }
 
-    private void handleCoinResponse(CoinResponse response){
+    private void handleCoinResponse(CoinResponse response) {
         dataCoin.postValue(response.getData().getCoin());
     }
 

@@ -6,7 +6,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
 import com.example.androcrypto.models.Coin;
 import com.example.androcrypto.models.CoinListResponse;
@@ -53,7 +52,7 @@ public class MainViewModel extends AndroidViewModel implements IMainViewModel {
     }
 
     private void handleCoinListResponse(CoinListResponse response) {
-        for(Coin coin : response.getData().getCoins()) {
+        for (Coin coin : response.getData().getCoins()) {
             dataRepository.insertData(coin);
         }
     }

@@ -1,16 +1,15 @@
 package com.example.androcrypto;
 
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.content.Intent;
-import android.os.Bundle;
-
 import com.example.androcrypto.databinding.ActivityMainBinding;
 import com.example.androcrypto.models.Coin;
 import com.example.androcrypto.viewmodels.IMainViewModel;
-
 import com.example.androcrypto.viewmodels.MainViewModel;
 
 import java.util.ArrayList;
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         adapter = new RecyclerViewAdapter(new ArrayList<>());
-        adapter.setListener(new Listener() {
+        adapter.setListener(new CoinListener() {
             @Override
             public void onClick(Coin coin) {
                 intent = new Intent(MainActivity.this, DetailsActivity.class);

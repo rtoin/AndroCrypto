@@ -17,17 +17,17 @@ import java.util.List;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
     private List<Coin> data;
-    private Listener listener;
+    private CoinListener listener;
 
     public RecyclerViewAdapter(List<Coin> coins) {
         this.data = coins;
     }
 
-    public Listener getListener() {
+    public CoinListener getListener() {
         return listener;
     }
 
-    public void setListener(Listener listener) {
+    public void setListener(CoinListener listener) {
         this.listener = listener;
     }
 
@@ -44,20 +44,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.binding.textPriceValue.setText(data.get(position).getPrice());
 
         String currentFavorite = PreferencesHelper.getInstance().getFavoriteCoin();
-        if(currentFavorite.equals(data.get(position).getName())) {
+        if (currentFavorite.equals(data.get(position).getName())) {
             holder.binding.iconFavorite.setVisibility(View.VISIBLE);
         } else {
             holder.binding.iconFavorite.setVisibility(View.INVISIBLE);
         }
 
         holder.binding.getRoot().setOnClickListener(v -> {
-            if(listener != null) {
+            if (listener != null) {
                 listener.onClick(data.get(position));
             }
         });
 
         holder.binding.textName.setOnClickListener(view -> {
-            if(listener != null) {
+            if (listener != null) {
                 listener.onClick(data.get(position));
             }
         });
@@ -65,7 +65,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public int getItemCount() {
-        if(data != null) {
+        if (data != null) {
             return data.size();
         } else {
             return 0;

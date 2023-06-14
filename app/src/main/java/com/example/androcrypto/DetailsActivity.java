@@ -32,7 +32,7 @@ public class DetailsActivity extends AppCompatActivity {
         binding.buttonFavorite.setEnabled(false);
 
         viewModel.getDataCoin().observe(this, coin -> {
-            if(coin != null) {
+            if (coin != null) {
                 binding.coinName.setText(coin.getName());
                 binding.coinSymbol.setText(coin.getSymbol());
                 binding.coinPrice.setText(coin.getPrice());
@@ -57,9 +57,9 @@ public class DetailsActivity extends AppCompatActivity {
 
         String currentFavorite = PreferencesHelper.getInstance().getFavoriteCoin();
 
-        if(currentFavorite != null) {
-            if(coin != null) {
-                if(currentFavorite.equals(coin.getName())) {
+        if (currentFavorite != null) {
+            if (coin != null) {
+                if (currentFavorite.equals(coin.getName())) {
                     binding.buttonFavorite.setText("Remove from favorite");
                     binding.iconStar.setVisibility(View.VISIBLE);
                 } else {
@@ -83,9 +83,9 @@ public class DetailsActivity extends AppCompatActivity {
     private void updateFavoriteCoin(Coin coin) {
         String currentFavorite = PreferencesHelper.getInstance().getFavoriteCoin();
 
-        if(currentFavorite != null) {
-            if(coin != null) {
-                if(currentFavorite.equals(coin.getName())) {
+        if (currentFavorite != null) {
+            if (coin != null) {
+                if (currentFavorite.equals(coin.getName())) {
                     PreferencesHelper.getInstance().setFavoriteCoin("");
                 } else {
                     PreferencesHelper.getInstance().setFavoriteCoin(coin.getName());

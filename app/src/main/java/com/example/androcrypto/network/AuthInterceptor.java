@@ -1,7 +1,6 @@
 package com.example.androcrypto.network;
 
 import androidx.annotation.NonNull;
-// TODO: inutile
 
 import java.io.IOException;
 

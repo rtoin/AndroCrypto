@@ -11,9 +11,9 @@ public class RetrofitNetworkManager {
     public static final CoinRankingAPI coinRankingAPI;
 
     static {
-    OkHttpClient client = new OkHttpClient.Builder()
-            .addNetworkInterceptor(new AuthInterceptor())
-            .build();
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addNetworkInterceptor(new AuthInterceptor())
+                .build();
 
 
         Retrofit retrofit = new Retrofit.Builder()
