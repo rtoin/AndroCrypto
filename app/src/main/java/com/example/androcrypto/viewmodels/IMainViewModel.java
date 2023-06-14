@@ -6,7 +6,7 @@ import com.example.androcrypto.models.Coin;
 
 import java.util.List;
 
-public interface IViewModel {
+public interface IMainViewModel {
     LiveData<List<Coin>> getDataCoinList();
     void generateCoinList();
 }

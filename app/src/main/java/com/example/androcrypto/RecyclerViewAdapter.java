@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androcrypto.databinding.CoinCellBinding;
 import com.example.androcrypto.models.Coin;
-import com.example.androcrypto.storage.Preferences;
+import com.example.androcrypto.storage.PreferencesHelper;
 
 import java.util.List;
 
@@ -43,7 +43,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.binding.textName.setText(data.get(position).getName());
         holder.binding.textPriceValue.setText(data.get(position).getPrice());
 
-        String currentFavorite = Preferences.getInstance().getFavoriteCoin();
+        String currentFavorite = PreferencesHelper.getInstance().getFavoriteCoin();
         if(currentFavorite.equals(data.get(position).getName())) {
             holder.binding.iconFavorite.setVisibility(View.VISIBLE);
         } else {

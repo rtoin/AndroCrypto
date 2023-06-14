@@ -9,16 +9,16 @@ import android.os.Bundle;
 
 import com.example.androcrypto.databinding.ActivityMainBinding;
 import com.example.androcrypto.models.Coin;
-import com.example.androcrypto.viewmodels.IViewModel;
+import com.example.androcrypto.viewmodels.IMainViewModel;
 
-import com.example.androcrypto.viewmodels.RetrofitViewModel;
+import com.example.androcrypto.viewmodels.MainViewModel;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    private IViewModel viewModel;
+    private IMainViewModel viewModel;
 
     private RecyclerViewAdapter adapter;
     private Intent intent;
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        viewModel = new ViewModelProvider(this).get(RetrofitViewModel.class);
+        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         binding.refreshButton.setOnClickListener(v -> {
             viewModel.generateCoinList();

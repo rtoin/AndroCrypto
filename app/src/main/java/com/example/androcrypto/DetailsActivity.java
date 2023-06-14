@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.androcrypto.databinding.DetailsActivityBinding;
 import com.example.androcrypto.models.Coin;
-import com.example.androcrypto.storage.Preferences;
+import com.example.androcrypto.storage.PreferencesHelper;
 import com.example.androcrypto.viewmodels.DetailsViewModel;
 import com.example.androcrypto.viewmodels.IDetailsViewModel;
 
@@ -57,7 +57,7 @@ public class DetailsActivity extends AppCompatActivity {
      */
     private void updateFavoriteDisplay(Coin coin) {
 
-        String currentFavorite = Preferences.getInstance().getFavoriteCoin();
+        String currentFavorite = PreferencesHelper.getInstance().getFavoriteCoin();
 
         if(currentFavorite != null) {
             if(coin != null) {
@@ -83,18 +83,18 @@ public class DetailsActivity extends AppCompatActivity {
      * @param coin coin to save as favorite
      */
     private void updateFavoriteCoin(Coin coin) {
-        String currentFavorite = Preferences.getInstance().getFavoriteCoin();
+        String currentFavorite = PreferencesHelper.getInstance().getFavoriteCoin();
 
         if(currentFavorite != null) {
             if(coin != null) {
                 if(currentFavorite.equals(coin.getName())) {
-                    Preferences.getInstance().setFavoriteCoin("");
+                    PreferencesHelper.getInstance().setFavoriteCoin("");
                 } else {
-                    Preferences.getInstance().setFavoriteCoin(coin.getName());
+                    PreferencesHelper.getInstance().setFavoriteCoin(coin.getName());
                 }
             }
         } else {
-            Preferences.getInstance().setFavoriteCoin(coin.getName());
+            PreferencesHelper.getInstance().setFavoriteCoin(coin.getName());
         }
     }
 }

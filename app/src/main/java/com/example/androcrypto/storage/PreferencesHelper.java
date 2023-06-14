@@ -5,22 +5,22 @@ import android.content.SharedPreferences;
 
 import com.example.androcrypto.AndroCryptoApplication;
 
-public class Preferences {
+public class PreferencesHelper {
 
-    private static Preferences INSTANCE;
+    private static PreferencesHelper INSTANCE;
 
     private static final String SHARED_PREFERENCES_NAME = "androCryptoPreferences";
     private static final String FAVORITE_COIN_KEY = "favoriteCoin";
 
     private final SharedPreferences preferences;
 
-    private Preferences() {
+    private PreferencesHelper() {
         preferences = AndroCryptoApplication.getContext().getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
     }
 
-    public static Preferences getInstance() {
+    public static PreferencesHelper getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new Preferences();
+            INSTANCE = new PreferencesHelper();
         }
         return INSTANCE;
     }

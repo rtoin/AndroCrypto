@@ -20,14 +20,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class RetrofitViewModel extends AndroidViewModel implements IViewModel {
+public class MainViewModel extends AndroidViewModel implements IMainViewModel {
 
     private final MutableLiveData<Coin> dataCoin = new MutableLiveData<>();
 
     private final DataRepository dataRepository;
     private final LiveData<List<Coin>> data;
 
-    public RetrofitViewModel(@NonNull Application application) {
+    public MainViewModel(@NonNull Application application) {
         super(application);
         dataRepository = new DataRepository(application);
         data = dataRepository.getData();
