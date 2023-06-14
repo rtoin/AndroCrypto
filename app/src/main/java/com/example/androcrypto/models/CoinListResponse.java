@@ -1,10 +1,10 @@
 package com.example.androcrypto.models;
 
-public class CoinsResponse {
+public class CoinListResponse {
 
     private String status;
 
-    private CoinsData data;
+    private CoinListData data;
 
     public String getStatus() {
         return status;
@@ -14,11 +14,11 @@ public class CoinsResponse {
         this.status = status;
     }
 
-    public CoinsData getData() {
+    public CoinListData getData() {
         return data;
     }
 
-    public void setData(CoinsData data) {
+    public void setData(CoinListData data) {
         this.data = data;
     }
 }

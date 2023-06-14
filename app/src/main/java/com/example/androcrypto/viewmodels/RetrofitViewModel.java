@@ -10,7 +10,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.androcrypto.models.CoinResponse;
-import com.example.androcrypto.models.CoinsResponse;
+import com.example.androcrypto.models.CoinListResponse;
 import com.example.androcrypto.models.Coin;
 import com.example.androcrypto.network.RetrofitNetworkManager;
 import com.example.androcrypto.storage.DataRepository;
@@ -38,16 +38,16 @@ public class RetrofitViewModel extends AndroidViewModel implements IViewModel {
     }
 
     @Override
-    public LiveData<List<Coin>> getDataCoins() {
+    public LiveData<List<Coin>> getDataCoinList() {
         return data;
     }
 
     public LiveData<Coin> getDataCoin() { return dataCoin; }
 
     public void generateCoinList() {
-        RetrofitNetworkManager.coinRankingAPI.getCoinList().enqueue(new Callback<CoinsResponse>() {
+        RetrofitNetworkManager.coinRankingAPI.getCoinList().enqueue(new Callback<CoinListResponse>() {
             @Override
-            public void onResponse(Call<CoinsResponse> call, Response<CoinsResponse> response) {
+            public void onResponse(Call<CoinListResponse> call, Response<CoinListResponse> response) {
                 if (response.body() != null) {
                     handleCoinListResponse(response.body());
                 } else {
@@ -56,16 +56,14 @@ public class RetrofitViewModel extends AndroidViewModel implements IViewModel {
             }
 
             @Override
-            public void onFailure(Call<CoinsResponse> call, Throwable t) {
+            public void onFailure(Call<CoinListResponse> call, Throwable t) {
                 t.printStackTrace();
                 handleCoinListError();
-
-                // TODO: gestion des erreurs
             }
         });
     }
 
-    private void handleCoinListResponse(CoinsResponse response) {
+    private void handleCoinListResponse(CoinListResponse response) {
         for(Coin coin : response.getData().getCoins()) {
             dataRepository.insertData(coin);
         }
@@ -77,25 +75,5 @@ public class RetrofitViewModel extends AndroidViewModel implements IViewModel {
 
         Toast toast = Toast.makeText(this.MyApplication, text, duration);
         toast.show();
-    }
-
-    public void generateCoin(String uuid) {
-        RetrofitNetworkManager.coinRankingAPI.getCoin(uuid).enqueue(new Callback<CoinResponse>() {
-            @Override
-            public void onResponse(Call<CoinResponse> call, Response<CoinResponse> response) {
-                if (response.body() != null) {
-                    handleCoinResponse(response.body());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CoinResponse> call, Throwable t) {
-                t.printStackTrace();
-            }
-        });
-    }
-
-    private void handleCoinResponse(CoinResponse response) {
-        dataCoin.postValue(response.getData());
     }
 }

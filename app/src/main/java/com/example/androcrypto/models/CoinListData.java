@@ -2,7 +2,7 @@ package com.example.androcrypto.models;
 
 import java.util.List;
 
-public class CoinsData {
+public class CoinListData {
 
     List<Coin> coins;
 

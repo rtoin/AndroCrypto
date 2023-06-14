@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData;
 
 import com.example.androcrypto.models.Coin;
 
-import java.util.List;
+public interface IDetailsViewModel {
 
-public interface IViewModel {
-    LiveData<List<Coin>> getDataCoinList();
-    void generateCoinList();
+    LiveData<Coin> getDataCoin();
+
+    void generateCoin(String uuid);
 }

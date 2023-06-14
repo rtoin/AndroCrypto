@@ -9,7 +9,6 @@ import android.os.Bundle;
 
 import com.example.androcrypto.databinding.ActivityMainBinding;
 import com.example.androcrypto.models.Coin;
-import com.example.androcrypto.storage.Preferences;
 import com.example.androcrypto.viewmodels.IViewModel;
 
 import com.example.androcrypto.viewmodels.RetrofitViewModel;
@@ -40,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         adapter.setListener(new Listener() {
             @Override
             public void onClick(Coin coin) {
-                viewModel.generateCoin(coin.getUuid());
                 intent = new Intent(MainActivity.this, DetailsActivity.class);
+                intent.putExtra("COIN_UUID", coin.getUuid());
                 startActivity(intent);
             }
         });
@@ -53,12 +52,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        viewModel.getDataCoins().observe(this, coins -> {
+        viewModel.getDataCoinList().observe(this, coins -> {
             adapter.setData(coins);
-        });
-
-        viewModel.getDataCoin().observe(this, coin -> {
-
         });
     }
 }
