@@ -22,23 +22,19 @@ import retrofit2.Response;
 
 public class MainViewModel extends AndroidViewModel implements IMainViewModel {
 
-    private final MutableLiveData<Coin> dataCoin = new MutableLiveData<>();
-
     private final DataRepository dataRepository;
-    private final LiveData<List<Coin>> data;
+    private final LiveData<List<Coin>> dataCoinList;
 
     public MainViewModel(@NonNull Application application) {
         super(application);
         dataRepository = new DataRepository(application);
-        data = dataRepository.getData();
+        dataCoinList = dataRepository.getData();
     }
 
     @Override
     public LiveData<List<Coin>> getDataCoinList() {
-        return data;
+        return dataCoinList;
     }
-
-    public LiveData<Coin> getDataCoin() { return dataCoin; }
 
     public void generateCoinList() {
         RetrofitNetworkManager.coinRankingAPI.getCoinList().enqueue(new Callback<CoinListResponse>() {
@@ -46,14 +42,11 @@ public class MainViewModel extends AndroidViewModel implements IMainViewModel {
             public void onResponse(Call<CoinListResponse> call, Response<CoinListResponse> response) {
                 if (response.body() != null) {
                     handleCoinListResponse(response.body());
-                } else {
-                    handleCoinListError();
                 }
             }
 
             @Override
             public void onFailure(Call<CoinListResponse> call, Throwable t) {
-                t.printStackTrace();
                 handleCoinListError();
             }
         });
@@ -66,10 +59,7 @@ public class MainViewModel extends AndroidViewModel implements IMainViewModel {
     }
 
     private void handleCoinListError() {
-        CharSequence message = "You are disconnected!";
-        int duration = Toast.LENGTH_SHORT;
-
-        Toast toast = Toast.makeText(this.getApplication(), message, duration);
+        Toast toast = Toast.makeText(this.getApplication(), "You are disconnected!", Toast.LENGTH_SHORT);
         toast.show();
     }
 }

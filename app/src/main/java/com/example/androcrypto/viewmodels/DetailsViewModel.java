@@ -52,10 +52,7 @@ public class DetailsViewModel extends AndroidViewModel implements IDetailsViewMo
     }
 
     private void handleCoinError() {
-        CharSequence message = "You are disconnected!";
-        int duration = Toast.LENGTH_LONG;
-
-        Toast toast = Toast.makeText(this.getApplication(), message, duration);
+        Toast toast = Toast.makeText(this.getApplication(), "You are disconnected!", Toast.LENGTH_LONG);
         toast.show();
     }
 }

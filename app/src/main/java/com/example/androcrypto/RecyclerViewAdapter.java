@@ -56,12 +56,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             }
         });
 
-        holder.binding.textName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(listener != null) {
-                    listener.onClick(data.get(position));
-                }
+        holder.binding.textName.setOnClickListener(view -> {
+            if(listener != null) {
+                listener.onClick(data.get(position));
             }
         });
     }
@@ -80,9 +77,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         notifyDataSetChanged();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private CoinCellBinding binding;
+        private final CoinCellBinding binding;
 
         public MyViewHolder(CoinCellBinding coinCellBinding) {
             super(coinCellBinding.getRoot());

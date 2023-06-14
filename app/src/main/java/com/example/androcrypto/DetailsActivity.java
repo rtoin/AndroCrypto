@@ -18,15 +18,13 @@ public class DetailsActivity extends AppCompatActivity {
     private DetailsActivityBinding binding;
     private IDetailsViewModel viewModel;
 
-    private String uuid;
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DetailsActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         Intent intent = getIntent();
-        uuid = intent.getStringExtra("COIN_UUID");
+        String uuid = intent.getStringExtra("COIN_UUID");
 
         viewModel = new ViewModelProvider(this).get(DetailsViewModel.class);
         viewModel.generateCoin(uuid);
