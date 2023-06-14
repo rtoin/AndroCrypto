@@ -1,5 +1,6 @@
 package com.example.androcrypto;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androcrypto.databinding.CoinCellBinding;
 import com.example.androcrypto.models.Coin;
+import com.example.androcrypto.storage.Preferences;
 
 import java.util.List;
 
@@ -37,20 +39,29 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.binding.nameView.setText(data.get(position).getName());
-        holder.binding.priceView.setText(data.get(position).getPrice());
+    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        holder.binding.textName.setText(data.get(position).getName());
+        holder.binding.textPriceValue.setText(data.get(position).getPrice());
 
+        String currentFavorite = Preferences.getInstance().getFavoriteCoin();
+        if(currentFavorite.equals(data.get(position).getName())) {
+            holder.binding.iconFavorite.setVisibility(View.VISIBLE);
+        } else {
+            holder.binding.iconFavorite.setVisibility(View.INVISIBLE);
+        }
 
         holder.binding.getRoot().setOnClickListener(v -> {
-            // TODO: attention si listener == null
-            listener.onClick(data.get(position));
+            if(listener != null) {
+                listener.onClick(data.get(position));
+            }
         });
-        holder.binding.nameView.setOnClickListener(new View.OnClickListener() {
+
+        holder.binding.textName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: pourquoi ne pas utiliser position comme au dessus ?
-                listener.onClick(data.get(holder.getAdapterPosition()));
+                if(listener != null) {
+                    listener.onClick(data.get(position));
+                }
             }
         });
     }

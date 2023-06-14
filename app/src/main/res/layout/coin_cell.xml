@@ -3,21 +3,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="50px">
+    android:layout_height="60px">
 
     <TextView
-        android:id="@+id/nameView"
+        android:id="@+id/textName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="name"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/iconFavorite"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/priceView"
+        android:id="@+id/textPriceValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="price"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iconFavorite"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="2dp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/star" />
 </androidx.constraintlayout.widget.ConstraintLayout>
