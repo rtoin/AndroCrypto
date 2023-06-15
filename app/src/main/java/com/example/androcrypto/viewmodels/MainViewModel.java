@@ -6,6 +6,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.example.androcrypto.models.Coin;
 import com.example.androcrypto.models.CoinListResponse;
@@ -24,6 +25,8 @@ public class MainViewModel extends AndroidViewModel implements IMainViewModel {
     private final DataRepository dataRepository;
     private final LiveData<List<Coin>> dataCoinList;
 
+    private final MutableLiveData<String> errorMessage = new MutableLiveData<>();
+
     public MainViewModel(@NonNull Application application) {
         super(application);
         dataRepository = new DataRepository(application);
@@ -34,6 +37,9 @@ public class MainViewModel extends AndroidViewModel implements IMainViewModel {
     public LiveData<List<Coin>> getDataCoinList() {
         return dataCoinList;
     }
+
+    @Override
+    public LiveData<String> getErrorMessage() { return errorMessage; }
 
     public void generateCoinList() {
         RetrofitNetworkManager.coinRankingAPI.getCoinList().enqueue(new Callback<CoinListResponse>() {
@@ -58,7 +64,6 @@ public class MainViewModel extends AndroidViewModel implements IMainViewModel {
     }
 
     private void handleCoinListError() {
-        Toast toast = Toast.makeText(this.getApplication(), "You are disconnected!", Toast.LENGTH_SHORT);
-        toast.show();
+        errorMessage.postValue("You are disconnected!");
     }
 }

@@ -3,6 +3,7 @@ package com.example.androcrypto;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -45,6 +46,11 @@ public class DetailsActivity extends AppCompatActivity {
                 updateFavoriteCoin(coin);
                 updateFavoriteDisplay(coin);
             });
+        });
+
+        viewModel.getErrorMessage().observe(this, message -> {
+            Toast toast = Toast.makeText(this.getApplication(), message, Toast.LENGTH_LONG);
+            toast.show();
         });
     }
 

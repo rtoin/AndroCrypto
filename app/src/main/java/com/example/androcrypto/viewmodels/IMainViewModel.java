@@ -9,5 +9,7 @@ import java.util.List;
 public interface IMainViewModel {
     LiveData<List<Coin>> getDataCoinList();
 
+    LiveData<String> getErrorMessage();
+
     void generateCoinList();
 }

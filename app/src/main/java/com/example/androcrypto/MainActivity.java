@@ -2,6 +2,7 @@ package com.example.androcrypto;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -45,6 +46,11 @@ public class MainActivity extends AppCompatActivity {
         });
         binding.coinList.setLayoutManager(new LinearLayoutManager(this));
         binding.coinList.setAdapter(adapter);
+
+        viewModel.getErrorMessage().observe(this, message -> {
+            Toast toast = Toast.makeText(this.getApplication(), message, Toast.LENGTH_SHORT);
+            toast.show();
+        });
     }
 
     @Override

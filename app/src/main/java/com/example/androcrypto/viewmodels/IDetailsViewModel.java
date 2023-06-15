@@ -8,5 +8,7 @@ public interface IDetailsViewModel {
 
     LiveData<Coin> getDataCoin();
 
+    LiveData<String> getErrorMessage();
+
     void generateCoin(String uuid);
 }

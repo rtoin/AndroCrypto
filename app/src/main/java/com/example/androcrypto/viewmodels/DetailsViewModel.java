@@ -1,7 +1,6 @@
 package com.example.androcrypto.viewmodels;
 
 import android.app.Application;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -20,6 +19,8 @@ public class DetailsViewModel extends AndroidViewModel implements IDetailsViewMo
 
     private final MutableLiveData<Coin> dataCoin = new MutableLiveData<>();
 
+    private final MutableLiveData<String> errorMessage = new MutableLiveData<>();
+
     public DetailsViewModel(@NonNull Application application) {
         super(application);
     }
@@ -28,6 +29,9 @@ public class DetailsViewModel extends AndroidViewModel implements IDetailsViewMo
     public LiveData<Coin> getDataCoin() {
         return dataCoin;
     }
+
+    @Override
+    public LiveData<String> getErrorMessage() { return errorMessage; }
 
     @Override
     public void generateCoin(String uuid) {
@@ -52,7 +56,6 @@ public class DetailsViewModel extends AndroidViewModel implements IDetailsViewMo
     }
 
     private void handleCoinError() {
-        Toast toast = Toast.makeText(this.getApplication(), "You are disconnected!", Toast.LENGTH_LONG);
-        toast.show();
+        errorMessage.postValue("You are disconnected!");
     }
 }
