@@ -19,6 +19,8 @@ public class DetailsActivity extends AppCompatActivity {
     private DetailsActivityBinding binding;
     private IDetailsViewModel viewModel;
 
+    private Intent notificationIntent;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DetailsActivityBinding.inflate(getLayoutInflater());
@@ -26,6 +28,8 @@ public class DetailsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String uuid = intent.getStringExtra("COIN_UUID");
+
+        notificationIntent = new Intent(this, NotificationService.class);
 
         viewModel = new ViewModelProvider(this).get(DetailsViewModel.class);
         viewModel.generateCoin(uuid);
@@ -94,14 +98,20 @@ public class DetailsActivity extends AppCompatActivity {
                 if (currentFavorite.equals(coin.getName())) {
                     PreferencesHelper.getInstance().setFavoriteCoin("");
                     PreferencesHelper.getInstance().setFavoriteCoinUuid("");
+                    stopService(notificationIntent);
+
                 } else {
                     PreferencesHelper.getInstance().setFavoriteCoin(coin.getName());
                     PreferencesHelper.getInstance().setFavoriteCoinUuid(coin.getUuid());
+                    stopService(notificationIntent);
+                    startService(notificationIntent);
                 }
             }
         } else {
             PreferencesHelper.getInstance().setFavoriteCoin(coin.getName());
             PreferencesHelper.getInstance().setFavoriteCoinUuid(coin.getUuid());
+            stopService(notificationIntent);
+            startService(notificationIntent);
         }
     }
 }

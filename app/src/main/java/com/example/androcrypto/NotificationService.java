@@ -76,7 +76,7 @@ public class NotificationService extends Service {
     private void setupForeground() {
         createChannel();
 
-        startForeground(NOTIFICATION_ID, createNotification("Empty"));
+        startForeground(NOTIFICATION_ID, createNotification("Favorite a currency to see it there"));
     }
 
     private void startMonitoring() {
@@ -85,7 +85,7 @@ public class NotificationService extends Service {
         Observer<Coin> observer = coin -> {
             if (coin != null) {
                 NotificationManager notificationManager = this.getSystemService(NotificationManager.class);
-                notificationManager.notify(NOTIFICATION_ID, createNotification(coin.getName() + " " + coin.getPrice() + "US$"));
+                notificationManager.notify(NOTIFICATION_ID, createNotification(coin.getName() + ": " + coin.getPrice() + " US$"));
             }
         };
         viewModel.getDataCoin().observeForever(observer);
@@ -119,7 +119,6 @@ public class NotificationService extends Service {
                 .setContentText(text)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setSilent(true)
-                .setOngoing(true)
                 .build();
 
         return notification;

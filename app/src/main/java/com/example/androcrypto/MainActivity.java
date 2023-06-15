@@ -64,7 +64,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        startService(notificationIntent);
+
+        String currentFavorite = PreferencesHelper.getInstance().getFavoriteCoin();
+        if (currentFavorite != null && currentFavorite != "") {
+            startService(notificationIntent);
+        }
 
         viewModel.getDataCoinList().observe(this, coins -> {
             adapter.setData(coins);
