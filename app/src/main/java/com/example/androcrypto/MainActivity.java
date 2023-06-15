@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.androcrypto.databinding.ActivityMainBinding;
 import com.example.androcrypto.models.Coin;
+import com.example.androcrypto.storage.PreferencesHelper;
 import com.example.androcrypto.viewmodels.IMainViewModel;
 import com.example.androcrypto.viewmodels.MainViewModel;
 
@@ -31,10 +32,21 @@ public class MainActivity extends AppCompatActivity {
 
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
+        //Notification
+        NotificationHelper.createNotificationChannel(this, "favNotif", "Favorite crypto", "Current price of your favorite crypto currency");
+        String currentFavorite = PreferencesHelper.getInstance().getFavoriteCoin();
+        if (currentFavorite != null) {
+            if(!currentFavorite.equals("")) {
+                setNotification(currentFavorite);
+            }
+        }
+
+        //Refresh button
         binding.refreshButton.setOnClickListener(v -> {
             viewModel.generateCoinList();
         });
 
+        //Coin list recycler view
         adapter = new RecyclerViewAdapter(new ArrayList<>());
         adapter.setListener(new CoinListener() {
             @Override
@@ -47,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         binding.coinList.setLayoutManager(new LinearLayoutManager(this));
         binding.coinList.setAdapter(adapter);
 
+        //Error toast
         viewModel.getErrorMessage().observe(this, message -> {
             Toast toast = Toast.makeText(this.getApplication(), message, Toast.LENGTH_SHORT);
             toast.show();
@@ -59,5 +72,9 @@ public class MainActivity extends AppCompatActivity {
         viewModel.getDataCoinList().observe(this, coins -> {
             adapter.setData(coins);
         });
+    }
+
+    private void setNotification(String coinName) {
+        NotificationHelper.showPersistentNotification(MainActivity.this, "Favorite crypto currency", coinName);
     }
 }

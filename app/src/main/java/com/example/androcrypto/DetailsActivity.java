@@ -93,12 +93,23 @@ public class DetailsActivity extends AppCompatActivity {
             if (coin != null) {
                 if (currentFavorite.equals(coin.getName())) {
                     PreferencesHelper.getInstance().setFavoriteCoin("");
+                    removeNotification();
                 } else {
                     PreferencesHelper.getInstance().setFavoriteCoin(coin.getName());
+                    setNotification(coin);
                 }
             }
         } else {
             PreferencesHelper.getInstance().setFavoriteCoin(coin.getName());
+            setNotification(coin);
         }
+    }
+
+    private void setNotification(Coin coin) {
+        NotificationHelper.showPersistentNotification(DetailsActivity.this, "Favorite crypto currency", coin.getName() + " - "+coin.getPrice());
+    }
+
+    private void removeNotification() {
+        NotificationHelper.removePersistentNotification(DetailsActivity.this);
     }
 }
