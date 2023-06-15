@@ -31,7 +31,9 @@ public class DetailsViewModel extends AndroidViewModel implements IDetailsViewMo
     }
 
     @Override
-    public LiveData<String> getErrorMessage() { return errorMessage; }
+    public LiveData<String> getErrorMessage() {
+        return errorMessage;
+    }
 
     @Override
     public void generateCoin(String uuid) {

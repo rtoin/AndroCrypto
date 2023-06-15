@@ -1,7 +1,6 @@
 package com.example.androcrypto.viewmodels;
 
 import android.app.Application;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -39,7 +38,9 @@ public class MainViewModel extends AndroidViewModel implements IMainViewModel {
     }
 
     @Override
-    public LiveData<String> getErrorMessage() { return errorMessage; }
+    public LiveData<String> getErrorMessage() {
+        return errorMessage;
+    }
 
     public void generateCoinList() {
         RetrofitNetworkManager.coinRankingAPI.getCoinList().enqueue(new Callback<CoinListResponse>() {

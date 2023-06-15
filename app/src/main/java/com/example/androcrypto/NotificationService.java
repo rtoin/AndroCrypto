@@ -14,7 +14,6 @@ import android.os.Looper;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.androcrypto.models.Coin;
 import com.example.androcrypto.storage.PreferencesHelper;
