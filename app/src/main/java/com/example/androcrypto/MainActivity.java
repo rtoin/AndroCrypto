@@ -24,22 +24,17 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerViewAdapter adapter;
     private Intent intent;
 
+    private Intent notificationIntent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        notificationIntent = new Intent(this, NotificationService.class);
 
-        //Notification
-        NotificationHelper.createNotificationChannel(this, "favNotif", "Favorite crypto", "Current price of your favorite crypto currency");
-        String currentFavorite = PreferencesHelper.getInstance().getFavoriteCoin();
-        if (currentFavorite != null) {
-            if(!currentFavorite.equals("")) {
-                setNotification(currentFavorite);
-            }
-        }
+        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         //Refresh button
         binding.refreshButton.setOnClickListener(v -> {
@@ -69,12 +64,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        startService(notificationIntent);
+
         viewModel.getDataCoinList().observe(this, coins -> {
             adapter.setData(coins);
         });
-    }
-
-    private void setNotification(String coinName) {
-        NotificationHelper.showPersistentNotification(MainActivity.this, "Favorite crypto currency", coinName);
     }
 }

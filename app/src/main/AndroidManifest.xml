@@ -23,6 +23,10 @@
         </activity>
         <activity android:name=".DetailsActivity"
             android:exported="true"/>
+        <service
+            android:name=".NotificationService"
+            android:enabled="true"
+            android:exported="true" />
 
     </application>
 
