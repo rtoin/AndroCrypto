@@ -18,7 +18,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     private DetailsActivityBinding binding;
     private IDetailsViewModel viewModel;
-
+    // TODO: variable locale pour les intents
     private Intent notificationIntent;
 
     protected void onCreate(Bundle savedInstanceState) {

@@ -42,7 +42,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.binding.textName.setText(data.get(position).getName());
         holder.binding.textPriceValue.setText(data.get(position).getPrice());
-
+        // TODO: j'ai répété plusieurs fois de ne pas utiliser les prefs dans le RVA
         String currentFavorite = PreferencesHelper.getInstance().getFavoriteCoin();
         if (currentFavorite.equals(data.get(position).getName())) {
             holder.binding.iconFavorite.setVisibility(View.VISIBLE);
@@ -55,7 +55,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 listener.onClick(data.get(position));
             }
         });
-
+        // TODO: Pourquoi le clickListener 2 fois ?
         holder.binding.textName.setOnClickListener(view -> {
             if (listener != null) {
                 listener.onClick(data.get(position));

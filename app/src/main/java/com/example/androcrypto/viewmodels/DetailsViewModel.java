@@ -41,6 +41,7 @@ public class DetailsViewModel extends AndroidViewModel implements IDetailsViewMo
 
             @Override
             public void onResponse(Call<CoinResponse> call, Response<CoinResponse> response) {
+                // TODO: quid des cas où le body est null ?
                 if (response.body() != null) {
                     handleCoinResponse(response.body());
                 }

@@ -34,7 +34,7 @@ public class NotificationService extends Service {
     private IDetailsViewModel viewModel;
 
     private String uuid;
-
+    // TODO: inutilisé
     private int counter;
 
     public NotificationService() {

@@ -46,6 +46,7 @@ public class MainViewModel extends AndroidViewModel implements IMainViewModel {
         RetrofitNetworkManager.coinRankingAPI.getCoinList().enqueue(new Callback<CoinListResponse>() {
             @Override
             public void onResponse(Call<CoinListResponse> call, Response<CoinListResponse> response) {
+                // TODO: body null non géré ?
                 if (response.body() != null) {
                     handleCoinListResponse(response.body());
                 }

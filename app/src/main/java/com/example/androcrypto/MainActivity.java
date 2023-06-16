@@ -15,13 +15,15 @@ import com.example.androcrypto.viewmodels.IMainViewModel;
 import com.example.androcrypto.viewmodels.MainViewModel;
 
 import java.util.ArrayList;
-
+// TODO: L'application n'est pas utilisable! Au premier refresh elle crash parce que le favorite
+//  est null.
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private IMainViewModel viewModel;
 
     private RecyclerViewAdapter adapter;
+    // TODO: On ne garde pas de référence sur de intent, ce ne sont pas des objets réutilisés
     private Intent intent;
 
     private Intent notificationIntent;
@@ -66,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
         String currentFavorite = PreferencesHelper.getInstance().getFavoriteCoin();
+        // TODO: on doit comparer les String avec .equals()
         if (currentFavorite != null && currentFavorite != "") {
             startService(notificationIntent);
         }
